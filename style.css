@@ -1,0 +1,29 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+    background: #f4f4f4;
+    color: #333;
+}
+h1 {
+    text-align: center;
+    color: #006699;
+}
+label {
+    margin-right: 1rem;
+}
+select {
+    margin: 0.5rem;
+}
+table {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+}
+th {
+    background-color: #e6f2ff;
+}

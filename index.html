@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>TecnoBox - App Detergenza</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>TecnoBox - App Detergenza</h1>
+    <label for="attivita">Attività:</label>
+    <select id="attivita" onchange="filterData()">
+        <option value="">-- Seleziona --</option>
+    </select>
+    <label for="area">Area Operativa:</label>
+    <select id="area" onchange="filterData()">
+        <option value="">-- Seleziona --</option>
+    </select>
+    <table id="results">
+        <thead>
+            <tr><th>Prodotto</th><th>Codice</th><th>Descrizione</th><th>Formato</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
