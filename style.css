@@ -7,8 +7,9 @@ body {
 }
 header {
     background-color: #FFFFFF;
-    padding: 1rem;
+    padding: 0.5rem 0 0.2rem; /* meno spazio sopra e sotto */
     text-align: center;
+    border-bottom: 3px solid #4CAF50;
 }
 header h1 {
     color: #4CAF50;
