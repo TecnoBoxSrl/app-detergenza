@@ -1,37 +1,52 @@
 
-const data = [
-    { attivita: "Gelateria", area: "Pavimenti", prodotto: "Sgrassatore pavimenti", codice: "53716000", descrizione: "Per superfici grasse, PVC, cucina laboratorio", formato: "Tanica 5L" },
-    { attivita: "Gelateria", area: "Superfici alimentari", prodotto: "Sgrassatore disinfettante", codice: "53712500", descrizione: "Per inox, tavoli, contenitori, vetrine", formato: "Flacone 750ml" },
-    { attivita: "Ristorante", area: "Bagni", prodotto: "Gel cloro", codice: "53714100", descrizione: "Igienizzante per servizi igienici", formato: "Tanica 5L" }
-];
+document.addEventListener("DOMContentLoaded", () => {
+    const data = [
+        { attivita: "Gelateria", area: "Pavimenti", prodotto: "Sgrassatore pavimenti", codice: "53716000", descrizione: "Per superfici grasse", formato: "5L" }
+    ];
 
-const attivitaSel = document.getElementById('attivita');
-const areaSel = document.getElementById('area');
-const tbody = document.querySelector('#results tbody');
+    const attivitaSel = document.getElementById("attivita");
+    const areaSel = document.getElementById("area");
+    const tbody = document.querySelector("#tabella-prodotti tbody");
 
-const attivitaSet = new Set(data.map(d => d.attivita));
-attivitaSet.forEach(val => {
-    const opt = document.createElement('option');
-    opt.value = opt.text = val;
-    attivitaSel.appendChild(opt);
+    const attivita = [...new Set(data.map(item => item.attivita))];
+    attivita.forEach(val => {
+        const opt = document.createElement("option");
+        opt.value = val;
+        opt.textContent = val;
+        attivitaSel.appendChild(opt);
+    });
+
+    attivitaSel.addEventListener("change", updateAreas);
+    areaSel.addEventListener("change", renderTable);
+
+    function updateAreas() {
+        const filtered = data.filter(d => d.attivita === attivitaSel.value);
+        const aree = [...new Set(filtered.map(item => item.area))];
+        areaSel.innerHTML = '<option value="">Seleziona area operativa</option>';
+        aree.forEach(val => {
+            const opt = document.createElement("option");
+            opt.value = val;
+            opt.textContent = val;
+            areaSel.appendChild(opt);
+        });
+        renderTable();
+    }
+
+    function renderTable() {
+        tbody.innerHTML = "";
+        const filtered = data.filter(d => 
+            (attivitaSel.value === "" || d.attivita === attivitaSel.value) &&
+            (areaSel.value === "" || d.area === areaSel.value)
+        );
+        filtered.forEach(prod => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${prod.prodotto}</td>
+                <td>${prod.codice}</td>
+                <td>${prod.descrizione}</td>
+                <td>${prod.formato}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
 });
-
-function filterData() {
-    const att = attivitaSel.value;
-    const area = areaSel.value;
-
-    const areas = new Set(data.filter(d => !att || d.attivita === att).map(d => d.area));
-    areaSel.innerHTML = '<option value="">-- Seleziona --</option>';
-    areas.forEach(val => {
-        const opt = document.createElement('option');
-        opt.value = opt.text = val;
-        areaSel.appendChild(opt);
-    });
-
-    const filtered = data.filter(d => (!att || d.attivita === att) && (!area || d.area === area));
-    tbody.innerHTML = "";
-    filtered.forEach(d => {
-        const row = `<tr><td>${d.prodotto}</td><td>${d.codice}</td><td>${d.descrizione}</td><td>${d.formato}</td></tr>`;
-        tbody.innerHTML += row;
-    });
-}

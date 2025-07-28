@@ -3,25 +3,36 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>TecnoBox - App Detergenza</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linea Detergenza - Tecno Box</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>TecnoBox - App Detergenza</h1>
-    <label for="attivita">Attività:</label>
-    <select id="attivita" onchange="filterData()">
-        <option value="">-- Seleziona --</option>
-    </select>
-    <label for="area">Area Operativa:</label>
-    <select id="area" onchange="filterData()">
-        <option value="">-- Seleziona --</option>
-    </select>
-    <table id="results">
-        <thead>
-            <tr><th>Prodotto</th><th>Codice</th><th>Descrizione</th><th>Formato</th></tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <header>
+        <img src="logotecnobox.jpg" alt="Tecno Box Logo" class="logo">
+        <h1>Linea Detergenza</h1>
+    </header>
+    <main>
+        <div class="filters">
+            <select id="attivita">
+                <option value="">Seleziona attività</option>
+            </select>
+            <select id="area">
+                <option value="">Seleziona area operativa</option>
+            </select>
+        </div>
+        <table id="tabella-prodotti">
+            <thead>
+                <tr>
+                    <th>Prodotto</th>
+                    <th>Codice</th>
+                    <th>Descrizione</th>
+                    <th>Formato</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
