@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let data = [];
 
-    fetch("https://docs.google.com/spreadsheets/d/16nAQNl8NAI8x1OHJjkw4qNdj05Axh0CN/gviz/tq?tqx=out:json")
+  fetch("https://docs.google.com/spreadsheets/d/16nAQNl8NAI8x1OHJjkw4qNdj05Axh0CN/gviz/tq?tqx=out:json&sheet=Detergenza_TecnoBox")
+
         .then(res => res.text())
         .then(rep => {
             const json = JSON.parse(rep.substring(47).slice(0, -2));
