@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     function populateFilters() {
-        const attivita = [...new Set(data.map(d => d.attivita))];
+       const attivita = [...new Set(data.map(d => d.attivita))].filter(val => val && val.toUpperCase() !== "ATTIVITÀ");
         attivitaSel.innerHTML = '<option value="">Seleziona attività</option>';
         attivita.forEach(val => {
             const opt = document.createElement("option");
