@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let data = [];
 
-  fetch("https://docs.google.com/spreadsheets/d/16nAQNl8NAI8x1OHJjkw4qNdj05Axh0CN/gviz/tq?tqx=out:json&sheet=Detergenza_TecnoBox")
-
+    fetch("https://docs.google.com/spreadsheets/d/16nAQNl8NAI8x1OHJjkw4qNdj05Axh0CN/gviz/tq?tqx=out:json&sheet=Detergenza_TecnoBox")
         .then(res => res.text())
         .then(rep => {
             const json = JSON.parse(rep.substring(47).slice(0, -2));
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     function populateFilters() {
-       const attivita = [...new Set(data.map(d => d.attivita))].filter(val => val && val.toUpperCase() !== "ATTIVITÀ");
+        const attivita = [...new Set(data.map(d => d.attivita))].filter(val => val && val.toUpperCase().trim() !== "ATTIVITÀ");
         attivitaSel.innerHTML = '<option value="">Seleziona attività</option>';
         attivita.forEach(val => {
             const opt = document.createElement("option");
@@ -61,24 +60,25 @@ document.addEventListener("DOMContentLoaded", () => {
             (areaSel.value === "" || d.area === areaSel.value)
         );
         filtered.forEach(prod => {
-    // Escludi righe di intestazione duplicate
-    if (
-        prod.prodotto?.toUpperCase() === "PRODOTTO" ||
-        prod.codice?.toUpperCase() === "CODICE" ||
-        prod.descrizione?.toUpperCase() === "DESCRIZIONE" ||
-        prod.formato?.toUpperCase() === "FORMATO"
-    ) {
-        return; // salta questa riga
-    }
+            // Escludi righe di intestazione o vuote
+            if (
+                (!prod.prodotto && !prod.codice && !prod.descrizione && !prod.formato) ||
+                prod.prodotto?.toUpperCase().trim() === "PRODOTTO" ||
+                prod.codice?.toUpperCase().trim() === "CODICE" ||
+                prod.descrizione?.toUpperCase().trim() === "DESCRIZIONE" ||
+                prod.formato?.toUpperCase().trim() === "FORMATO"
+            ) {
+                return;
+            }
 
-    const row = document.createElement("tr");
-    row.innerHTML = `
-        <td>${prod.prodotto}</td>
-        <td>${prod.codice}</td>
-        <td>${prod.descrizione}</td>
-        <td>${prod.formato}</td>
-    `;
-    tbody.appendChild(row);
-});
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${prod.prodotto}</td>
+                <td>${prod.codice}</td>
+                <td>${prod.descrizione}</td>
+                <td>${prod.formato}</td>
+            `;
+            tbody.appendChild(row);
+        });
     }
 });
