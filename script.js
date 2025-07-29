@@ -61,14 +61,24 @@ document.addEventListener("DOMContentLoaded", () => {
             (areaSel.value === "" || d.area === areaSel.value)
         );
         filtered.forEach(prod => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${prod.prodotto}</td>
-                <td>${prod.codice}</td>
-                <td>${prod.descrizione}</td>
-                <td>${prod.formato}</td>
-            `;
-            tbody.appendChild(row);
-        });
+    // Escludi righe di intestazione duplicate
+    if (
+        prod.prodotto?.toUpperCase() === "PRODOTTO" ||
+        prod.codice?.toUpperCase() === "CODICE" ||
+        prod.descrizione?.toUpperCase() === "DESCRIZIONE" ||
+        prod.formato?.toUpperCase() === "FORMATO"
+    ) {
+        return; // salta questa riga
+    }
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${prod.prodotto}</td>
+        <td>${prod.codice}</td>
+        <td>${prod.descrizione}</td>
+        <td>${prod.formato}</td>
+    `;
+    tbody.appendChild(row);
+});
     }
 });
