@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linea Detergenza - Tecno Box</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="logotecnobox.jpg" alt="Tecno Box Logo" class="logo">
+        <h1>Linea Detergenza</h1>
+    </header>
+    <main>
+        <div class="filters">
+            <input type="text" id="filtro-prodotto" placeholder="Cerca prodotto...">
+            <input type="text" id="filtro-superfici" placeholder="Cerca superfici...">
+        </div>
+        <table id="tabella-prodotti">
+            <thead>
+                <tr>
+                    <th>Codice</th>
+                    <th>Prodotto</th>
+                    <th>Superfici da Trattare</th>
+                    <th>Descrizione</th>
+                    <th>Modalità d'Uso</th>
+                    <th>Diluizione</th>
+                    <th>Formato</th>
+                    <th>Pezzi x CT</th>
+                    <th>CT x Pallet</th>
+                    <th>Scheda Tecnica</th>
+                    <th>Scheda Sicurezza</th>
+                    <th>Immagine</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+
+    <div class="zoom-overlay" id="zoomOverlay">
+        <img id="zoomedImg" src="" alt="Zoom immagine">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
