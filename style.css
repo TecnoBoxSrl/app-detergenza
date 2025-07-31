@@ -50,18 +50,19 @@ td img {
     margin: 0 auto;
     border: 1px solid #ccc;
     border-radius: 4px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-height: 300px;
-    object-fit: contain;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 td img:hover {
-    position: relative;
-    z-index: 999;
-    transform: scale(1.0);
-    max-width: none;
-    max-height: none;
+    position: absolute;
     width: auto;
     height: auto;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    max-width: none;
+    max-height: none;
+    z-index: 999;
+    background-color: #fff;
+    padding: 4px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
